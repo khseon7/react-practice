@@ -7,7 +7,7 @@ const API_BASE_URL = "http://127.0.0.1:8000";
 function RestAPI() {
     const [models, setModels] = useState([]);
     const [modelname, setModelname] = useState("");
-    const [parameter, setParameter] = useState("");
+    const [target, setTarget] = useState("");
     const [csvFile, setCsvFile] = useState(null);
 
     useEffect(() => {
@@ -32,8 +32,7 @@ function RestAPI() {
     const handleModelSubmit = () => {
         const formData = new FormData();
         formData.append('modelname', modelname);
-        formData.append('parameter', parameter);
-        formData.append('result', modelname + parameter);
+        formData.append('target', target);
         if (csvFile) {
             formData.append('csv_file', csvFile);
         }
@@ -54,7 +53,7 @@ function RestAPI() {
 
     return (
         <>
-            <h1>Model과 Parameter</h1>
+            <h1>Model과 target</h1>
             <div className="input-container">
                 <p>Input Model_name = <input
                     type="text"
@@ -62,11 +61,11 @@ function RestAPI() {
                     value={modelname}
                     onChange={(e) => setModelname(e.target.value)}
                 /></p>
-                <p>Input Model's Parameter = <input
+                <p>Input Model's target = <input
                     type="text"
-                    placeholder="Parameter"
-                    value={parameter}
-                    onChange={(e) => setParameter(e.target.value)}
+                    placeholder="target"
+                    value={target}
+                    onChange={(e) => setTarget(e.target.value)}
                 /></p>
                 <p>Input Your DataSet = <input
                     type="file"
@@ -84,10 +83,10 @@ function RestAPI() {
                 <div key={e.id} className="list-item">
                     <div className="list">
                         <span>
-                            {e.id}번, {e.modelname}, {e.parameter}
-                            {e.result !== null ? `, ${e.result}` : ''}{"\t"}
+                            {e.id}번, {e.modelname}, {e.target}
+                            {e.result !== null ? `, ${e.result}` : ''},
                         </span>
-                        {e.csv_file && <a href={`${API_BASE_URL}${e.csv_file}`}>CSV 파일 다운로드</a>}
+                        {e.original_filename && <span> {e.original_filename}</span>}{"\t"}
                         <button className="btn-model-delete" onClick={() => {
                             axios.delete(`${API_BASE_URL}/model/${e.id}`)
                                 .then(() => {
