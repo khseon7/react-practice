@@ -1,0 +1,46 @@
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-container p {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.input-container p input[type="text"],
+.input-container p input[type="file"] {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.model-list {
+    margin-top: 20px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.list-item-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.list-item-content span {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.btn-model-delete {
+    margin-left: 10px;
+}
